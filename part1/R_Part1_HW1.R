@@ -23,3 +23,10 @@ Intel.1998$HighLowRange <- (Intel.1998$High - Intel.1998$Low)
 ggplot(Intel.1998, aes(x=Volume, y=HighLowRange)) + geom_point(shape=16) + 
   scale_x_continuous(labels = scales::label_number_si()) + scale_y_continuous(labels=scales::dollar_format()) + 
   labs(title = "Daily Price Range vs Volume of Intel (1998)", y = "Price Range")
+
+## E. hunting down and eliminating outliers
+ ## Volume 
+summary(Intel.1998) 
+summary(Intel.1998$Volume)
+filter(Intel.1998, Volume >= quantile(Intel.1998$Volume, probs = c(0.99)))
+Intel.1998 <- subset(Intel.1998, Volume < quantile(Intel.1998$Volume, probs = c(1)))
