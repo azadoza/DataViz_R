@@ -36,10 +36,11 @@ ggplot(data = Intel.1998, aes(x=Date, y=Volume)) + geom_bar(stat = "identity", w
   scale_y_continuous(labels = scales::label_number_si()) + 
   scale_x_date(date_breaks = "1 month", date_labels = "%b") + theme(plot.title = element_text(hjust = 0.5))
 
-ggplot(Intel.1998, aes(x=Volume, y=HighLowRange)) + geom_point(shape=16") + 
-  scale_x_continuous(labels = scales::label_number_si()) + 
+ggplot(Intel.1998, aes(x=Volume, y=HighLowRange)) + geom_point(shape=16, color = "Turquoise4") + 
+  scale_x_continuous(labels = scales::label_number_si()) + scale_y_continuous(labels=scales::dollar_format()) + 
   labs(title = "Daily Price Range vs Volume of Intel (1998)", y = "Price Range")
 
-ggplot(Intel.1998, aes(x=Volume)) + geom_histogram(bins = 15") + 
+ggplot(Intel.1998, aes(x=Volume)) + geom_histogram(bins = 15, color = "Turquoise") + 
   scale_x_continuous(labels = scales::label_number_si()) + 
   labs(title = "Frequency of Daily Volume, Intel 1998", y = "Occurances")
+
