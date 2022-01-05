@@ -44,3 +44,13 @@ ggplot(Intel.1998, aes(x=Volume)) + geom_histogram(bins = 15, color = "Turquoise
   scale_x_continuous(labels = scales::label_number_si()) + 
   labs(title = "Frequency of Daily Volume, Intel 1998", y = "Occurances")
 
+ ## HighLowRange
+summary(Intel.1998$HighLowRange)
+filter(Intel.1998, HighLowRange >= quantile(Intel.1998$HighLowRange, probs = c(0.99)))
+ ## Close
+summary(Intel.1998$Close)
+filter(Intel.1998, Close >= quantile(Intel.1998$Close, probs = c(0.99)))
+filter(Intel.1998, Close <= quantile(Intel.1998$Close, probs = c(0.01)))
+ggplot(data = Intel.1998, aes(x=Date, y=Close)) + geom_line() + 
+  labs(title = "Closing Price of Intel per Day (1998)", x="Date", y="Price") + 
+  scale_x_date(date_breaks = "1 month", date_labels = "%b") + scale_y_continuous(labels=scales::dollar_format())
