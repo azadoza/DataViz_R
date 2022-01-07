@@ -15,3 +15,8 @@ ggplot(data=ds, aes(x=x, y=Group.1)) +
   scale_y_discrete(limits=ds$Group.1[order(ds$x)]) +
   labs(title = "Median Response Difference from True Value by Test", y = "", x = "Median Difference")
 
+ds2 <- aggregate(PerceptionExperiment1$Error, list(PerceptionExperiment1$Test), sd)
+ggplot(data=ds2, aes(x=Group.1, y=x)) + 
+  geom_bar(stat = "identity", color = "deepskyblue2", fill = "lightsteelblue") + 
+  scale_x_discrete(limits=ds2$Group.1[order(ds2$x)]) +
+  labs(title = "Standard Deviation of Perception Response Error \nfrom True Value by Test, Experiment 1", y = "Standard Deviation", x = "Test")
