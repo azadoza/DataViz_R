@@ -8,3 +8,10 @@ PerceptionExperiment1$Error <- (PerceptionExperiment1$Response - PerceptionExper
 ggplot(PerceptionExperiment1, aes(x=Error)) + geom_histogram(bins = 16, color = "deepskyblue3", fill = "lightsteelblue") + 
   scale_x_continuous(limits = c(-1, 1)) +
   labs(title = "Frequency of True Value Difference (Error) from \nResponse of Perception Experiment 1", y="Frequency")
+
+ds <- aggregate(PerceptionExperiment1$Error, list(PerceptionExperiment1$Test), median)
+ggplot(data=ds, aes(x=x, y=Group.1)) + 
+  geom_bar(stat = "identity", color = "deepskyblue2", fill = "lightsteelblue") + 
+  scale_y_discrete(limits=ds$Group.1[order(ds$x)]) +
+  labs(title = "Median Response Difference from True Value by Test", y = "", x = "Median Difference")
+
