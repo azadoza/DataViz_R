@@ -20,3 +20,10 @@ ggplot(data=ds2, aes(x=Group.1, y=x)) +
   geom_bar(stat = "identity", color = "deepskyblue2", fill = "lightsteelblue") + 
   scale_x_discrete(limits=ds2$Group.1[order(ds2$x)], labels = function(x) stringr::str_wrap(x, width = 10)) +
   labs(title = "Standard Deviation of Perception Response Error \nfrom True Value by Test, Experiment 1", y = "Standard Deviation", x = "Test")
+
+PerceptionExperiment1$ABS_Error <- abs(PerceptionExperiment1$Error)
+ds_abs <- aggregate(PerceptionExperiment1$ABS_Error, list(PerceptionExperiment1$Test), median)
+ggplot(data=ds_abs, aes(x=Group.1, y=x)) + 
+  geom_bar(stat = "identity", color = "deepskyblue3", fill = "lightsteelblue2", width = 0.8) + 
+  scale_x_discrete(limits=ds_abs$Group.1[order(ds_abs$x)], labels = function(x) stringr::str_wrap(x, width = 10)) +
+  labs(title = "Median of Perception Response Error by Test,\nAbsolute Values, Experiment 1", y = "Standard Deviation", x = "Test")
