@@ -18,5 +18,5 @@ ggplot(data=ds, aes(x=x, y=Group.1)) +
 ds2 <- aggregate(PerceptionExperiment1$Error, list(PerceptionExperiment1$Test), sd)
 ggplot(data=ds2, aes(x=Group.1, y=x)) + 
   geom_bar(stat = "identity", color = "deepskyblue2", fill = "lightsteelblue") + 
-  scale_x_discrete(limits=ds2$Group.1[order(ds2$x)]) +
+  scale_x_discrete(limits=ds2$Group.1[order(ds2$x)], labels = function(x) stringr::str_wrap(x, width = 10)) +
   labs(title = "Standard Deviation of Perception Response Error \nfrom True Value by Test, Experiment 1", y = "Standard Deviation", x = "Test")
