@@ -25,10 +25,13 @@ head(reservationV2)
 reservationV2 <- reservationV2[!grepl("Montana", reservationV2$Location),]
 reservationV2$Location <- gsub('[**]', '', reservationV2$Location)
 
- # plotting
+ # Line plot but with points 
 ggplot(data = reservationV2, aes(x=Year, y=Population, color = Location)) + 
-  geom_line() + 
+  geom_line(size=1.2) + 
+  geom_point(size=2)+
   labs(title = "Population Growth of Montana's Reservations", x="Year", y="Population") + 
   scale_x_date(limits = as.Date(c("1970-01-01","2000-01-01"))) +
   scale_y_continuous(labels = scales::label_number_si())+
+  theme(legend.position = "bottom", legend.title = element_blank())+
   guides(color = guide_legend(nrow = 4, byrow = TRUE, reverse = TRUE))
+  
