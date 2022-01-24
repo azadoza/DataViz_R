@@ -31,3 +31,25 @@ ggplot(subset, aes(x = Display, y = Error))+
   geom_hline(yintercept = 0, color = "grey40")+
   geom_point(data = subset, aes(x= Display, y = mean(Error)), size = 2.5)+
   theme(plot.title = element_text(size=12))
+
+  ## D. Erroneous Stimulus
+ # Finding the subset of subjects
+filter(PerceptionExperiment1, Display == "1" & Test == "Vertical Distance, Non-Aligned" & Response == 1.00)
+ # Subjects 56 - 73...
+ # creating filter for graph. Filtered to show only Vertical Distance, non-aligned in Display 1
+filter <- filter(PerceptionExperiment1, Test == "Vertical Distance, Non-Aligned", Display == "1" )
+
+ # plotting with filter
+ggplot(filter, 
+       aes(x= Trial, y = Response))+
+  geom_point(size = 3)+
+  geom_point(data = filter, 
+             aes(x = Trial, y = TrueValue, col = TrueValue), 
+             color = "red", 
+             size = 3.1)+
+  geom_point(data = filter, aes(x = Trial, y = 1.00, col = TrueValue), 
+             color = "blue",
+             size = 3.0)+
+  scale_y_continuous(expand = c(0, 0), limits = c(0,1.1))+
+  labs(title = "Responses for Vertical Distance, Non-Aligned Tests in Display 1",
+       subtitle = "Regular Responses in Green, True Value highlighted in Black, \nErroneous Responses marked Light Grey ")
