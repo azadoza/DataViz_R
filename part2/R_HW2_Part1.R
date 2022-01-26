@@ -75,3 +75,21 @@ ggplot(filter,
   labs(title = "Responses for Vertical Distance, Non-Aligned Tests in Display 1",
        subtitle = "Regular Responses in Green, True Value highlighted in Black, \nErroneous Responses marked Light Grey ")
 #----------------------------------------------
+
+## 1e. Experimenting with the data
+ # summary
+summary(PerceptionExperiment1)
+theme_update(plot.title = element_text(size=13))
+
+ggplot(PerceptionExperiment1, aes(x = TrueValue, y=Response))+
+  geom_abline(intercept = 0, slope = 1, size = 1.5, color = "grey80") +
+  geom_point(color = "darkseagreen",
+             size = 2.5)+
+  labs(title = "TrueValue vs Response in Perception Experiment 1")+
+  scale_x_discrete(limits = c(.1, .2, .3, .4, .5, .6,.7, .8, .9), expand=c(0.1, 0))
+
+ggplot(PerceptionExperiment1, aes(x = TrueValue, y=ABS_Error)) +
+  geom_point(color = "darkseagreen",
+             size = 2.5)+
+  labs(title = "TrueValue vs Absolute Error in Perception Experiment 1")+
+  scale_x_discrete(limits = c(.1, .2, .3, .4, .5, .6,.7, .8, .9), expand=c(0.1, 0))
