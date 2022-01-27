@@ -1,0 +1,4 @@
+library(dplyr)
+library(ggplot2)
+theme_set(theme_bw())
+theme_update(plot.title = element_text(hjust = 0.5))
