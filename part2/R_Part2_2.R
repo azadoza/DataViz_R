@@ -1,4 +1,21 @@
 library(dplyr)
 library(ggplot2)
+library(lubridate)
+library(scales)
+library(bdscale)
+
 theme_set(theme_bw())
 theme_update(plot.title = element_text(hjust = 0.5))
+
+## Cleaning up Data, fixing date
+Intel1990.20001$Date <- (mdy(Intel1990.20001$Date))
+## 1a Date v Adj Close w/ Volume
+ggplot(Intel1990.20001, aes(x = Date, y = Adj.Close, size = Volume))+
+  geom_line(color = "lightpurple")+
+  scale_y_continuous(labels=scales::dollar_format(), 
+                     expand = c(0, 0), 
+                     limits = c(0, 60))+
+  scale_x_date(date_breaks = "1 year", date_labels = "%Y") +
+  labs(title = "Adjusted Close Value and Volume of Intel per Day from 1900 to 2001", 
+       x = "Date", 
+       y = "Adjusted Close Value") 
