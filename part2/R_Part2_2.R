@@ -57,3 +57,17 @@ ggplot(df, aes(x = Year, y = mean, color = Volume))+
   labs(title = "Average Close Value and Total Volume of Intel \nPer Year, 1900 to 2001", 
        x = "Date", 
        y = "Log Base 10 Adjusted Close Value")
+
+## 1e...Size here we go again 
+
+ggplot(df, aes(x = Year, y = mean, size = Volume))+
+  geom_line(color = "#80c3b5") +
+  scale_x_date(date_breaks = "1 year", date_labels = "%Y")+
+  scale_y_continuous(labels=scales::dollar_format(), 
+                     expand = c(0, 0), 
+                     limits = c(0, 50))+
+  scale_size(name = "Total Volume\n(Billions)",
+            labels = scales::label_number_si())+
+  labs(title = "Average Close Value and Total Volume of Intel Per Year, 1900 to 2001", 
+       x = "Date", 
+       y = "Average Close Value")
