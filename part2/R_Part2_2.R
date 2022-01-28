@@ -11,7 +11,7 @@ theme_update(plot.title = element_text(hjust = 0.5))
 Intel1990.20001$Date <- (mdy(Intel1990.20001$Date))
 ## 1a Date v Adj Close w/ Volume
 ggplot(Intel1990.20001, aes(x = Date, y = Adj.Close, size = Volume))+
-  geom_line(color = "lightpurple")+
+  geom_line(color = "80c3b5")+
   scale_y_continuous(labels=scales::dollar_format(), 
                      expand = c(0, 0), 
                      limits = c(0, 60))+
@@ -19,3 +19,15 @@ ggplot(Intel1990.20001, aes(x = Date, y = Adj.Close, size = Volume))+
   labs(title = "Adjusted Close Value and Volume of Intel per Day from 1900 to 2001", 
        x = "Date", 
        y = "Adjusted Close Value") 
+
+## 1b Date v Adj Close w/ Volume
+ggplot(Intel1990.20001, aes(x = Date, y = Adj.Close, color = Volume))+
+  geom_line(size=2)+
+  scale_x_bd(business.dates = nyse, labels=date_format('%Y'))+
+  scale_y_continuous(labels=scales::dollar_format(), 
+                     expand = c(0, 0), 
+                     limits = c(0, 60)) +
+  labs(title = "Adjusted Close Value and Volume of Intel per Day from 1900 to 2001", 
+       x = "Date", 
+       y = "Adjusted Close Value") +
+  scale_color_gradient(low = "#80c3b5", high = "#7e2640")
