@@ -10,7 +10,9 @@ theme_update(plot.title = element_text(hjust = 0.5, size = 13),
 
 View(MontanaPopulationData)
 
+######################
 ######### A ###########
+######################
 ggplot(MontanaPopulationData, aes(x=Year, y= Population))+
   geom_line(size=2, color = "#094780")+
   scale_y_continuous(trans = "log", breaks = pretty_breaks(), labels = scales::label_number_si())+
@@ -18,7 +20,9 @@ ggplot(MontanaPopulationData, aes(x=Year, y= Population))+
   theme(panel.grid.minor = element_blank())+
   labs(title = "Population of Montana Every Ten Years from 1890 to 2000", subtitle = "Plotted Logarithmically to Display Population Doubling")
 
+######################
 ######### B ###########
+######################
  ## LAG calculation 
 MontanaPopulationData$PercentChange <- 
   (MontanaPopulationData$Population - lag(MontanaPopulationData$Population, 1))/
@@ -35,7 +39,9 @@ ggplot(MontanaPopulationData, aes(x=Year, y=PercentChange))+
      
 # 15% increase
 
-######### c ###########
+######################
+######### C ###########
+######################
 ggplot(MontanaPopulationData, aes(x=Year, y=PercentChange)) +
   geom_hline(yintercept=1.15, color = "lightskyblue2", size = 1) +
   geom_text(aes(x=1905, y=1.175, label = paste0(1.15,"%")), color = "lightskyblue4", size = 3.5)+
