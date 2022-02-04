@@ -3,6 +3,7 @@ library(ggplot2)
 library(lubridate)
 library(scales)
 library(tidyquant)
+
 theme_update(plot.title = element_text(hjust = 0.5, size = 13), 
              panel.background = element_blank(),
              plot.subtitle = element_text(size = 10),
@@ -36,7 +37,11 @@ ggplot_horizon(PortlandWaterLevel2003,
                bandwidth = 1)+
      facet_grid(time2 ~ .)+
      scale_fill_continuous(low = "green", high = "red")+
-     theme(legend.position = 'none') +
+     theme(axis.text = element_blank(),
+           axis.ticks = element_blank(), 
+           panel.border = element_blank(),
+           strip.background = element_blank(),
+           legend.position = 'none') +
   labs(title = "Water Level in Portland Each Hour in 2003",
        y = "Hour",
        Color = "Water Level")
