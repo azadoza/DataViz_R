@@ -3,10 +3,20 @@ library(maps)
 library(tidyverse)
 library(mapproj)
 library(choroplethrMaps)
+library(cartogram)
+library(tmap)
+library(maptools)
+library(maps)
+library(sp)
+
 # removing all the background in plot theme
 theme_update(panel.background = element_blank(),
              plot.subtitle = element_text(size = 10),
              panel.grid.minor = element_blank())
+
+#########################
+##### A. State Map ######
+#########################
 # setting state and county long/lat maps
 states <- map_data("state")
 counties <- map_data("county")
@@ -34,6 +44,9 @@ ggplot(FoodMapState,
         plot.title = element_text(hjust = 0.5, size = 15))+
   labs(title = "Availability of Food Services by State in 2007")
 
+##############################
+###### B. County Map #########
+##############################
 ## there's counties without state info so I'm just...DELETE
 df <- filter(FoodSrvcByCounty, State != "")
  # now
